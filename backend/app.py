@@ -2,12 +2,13 @@ from flask import Flask, request, jsonify
 from SPARQLWrapper import SPARQLWrapper, JSON
 from flask_cors import CORS
 
+
 app = Flask(__name__)
 CORS(app)  # Permet les requêtes Cross-Origin depuis le frontend
 
-# URL de l'endpoint SPARQL de Fuseki
-SPARQL_ENDPOINT = "http://localhost:3030/dataset/update"  # Point d'update au lieu de "sparql"
 
+# URL de l'endpoint SPARQL de Fuseki
+SPARQL_ENDPOINT = "http://localhost:3030/dataset"  # Point d'update au lieu de "sparql"
 @app.route("/query", methods=["POST"])
 def query():
     """
