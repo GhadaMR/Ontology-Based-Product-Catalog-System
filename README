@@ -33,3 +33,97 @@ http://localhost:5000/update
 {
     "update": "INSERT DATA { <http://example.org#Laptop2> <http://example.org#hasPrice> \"1200\" . }"
 }
+
+
+
+cd frontend\product-catalog
+npm start
+http://localhost:3000
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT * WHERE {
+  ?sub ?pred ?obj .
+} 
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.org/>
+SELECT ?instance ?type
+WHERE {
+  ?instance rdf:type ?type .
+}
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.org/>
+SELECT ?category (COUNT(?product) AS ?productCount)
+WHERE {
+  ?product rdf:type ?category .
+}
+GROUP BY ?category
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.org/>
+SELECT ?category (COUNT(?product) AS ?totalProducts)
+WHERE {
+  ?product rdf:type ?category .
+}
+GROUP BY ?category
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.org/>
+SELECT ?product
+WHERE {
+  ?product rdf:type ?category .
+  FILTER NOT EXISTS {
+    ?product ex:hasSpecification ?specification .
+  }
+}
+
+
+
+
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.org/>
+SELECT ?category
+WHERE {
+  ?category rdf:type rdfs:Class .
+  FILTER NOT EXISTS {
+    ?product rdf:type ?category .
+  }
+}
+
+
+
+
+
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.org/>
+SELECT ?category (GROUP_CONCAT(?product; separator=", ") AS ?products)
+WHERE {
+  ?product rdf:type ?category .
+}
+GROUP BY ?category
+
+

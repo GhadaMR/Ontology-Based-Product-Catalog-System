@@ -8,7 +8,7 @@ CORS(app)  # Permet les requêtes Cross-Origin depuis le frontend
 
 
 # URL de l'endpoint SPARQL de Fuseki
-SPARQL_ENDPOINT = "http://localhost:3030/dataset"  # Point d'update au lieu de "sparql"
+SPARQL_ENDPOINT = "http://localhost:3030/dataset"  
 @app.route("/query", methods=["POST"])
 def query():
     """
