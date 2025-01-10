@@ -1,0 +1,35 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org#> .
+
+# Instances de Electronics
+ex:Smartphone1 rdf:type ex:Electronics ;
+               ex:hasBrand "BrandA" ;
+               ex:hasPrice "299" ;
+               ex:hasSpecification "Specification details here" .
+
+ex:Laptop1 rdf:type ex:Electronics ;
+           ex:hasBrand "BrandB" ;
+           ex:hasPrice "799" ;
+           ex:hasSpecification "Specification details here" .
+
+# Instances de Clothing
+ex:TShirt1 rdf:type ex:Clothing ;
+           ex:hasBrand "BrandC" ;
+           ex:hasPrice "19.99" ;
+           ex:hasSpecification "Cotton, Size M" .
+
+ex:Jacket1 rdf:type ex:Clothing ;
+          ex:hasBrand "BrandD" ;
+          ex:hasPrice "89.99" ;
+          ex:hasSpecification "Leather, Size L" .
+
+# Instances de AutoParts
+ex:BrakePad1 rdf:type ex:AutoParts ;
+             ex:hasBrand "BrandE" ;
+             ex:hasPrice "49.99" ;
+             ex:hasSpecification "High performance brake pads" .
+
+ex:OilFilter1 rdf:type ex:AutoParts ;
+             ex:hasBrand "BrandF" ;
+             ex:hasPrice "15.99" ;
+             ex:hasSpecification "Engine oil filter" .

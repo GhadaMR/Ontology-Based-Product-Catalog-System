@@ -1,0 +1,35 @@
+Démarrer le Serveur Fuseki :
+cd C:\Users\hp\Downloads\apache-jena-fuseki-5.2.0\apache-jena-fuseki-5.2.0
+fuseki-server --mem /dataset
+http://localhost:3030/
+
+
+Charger l'Ontologie dans Fuseki :
+Dans l'interface web de Fuseki, sélectionnez votre dataset dataset.
+Allez dans l'onglet "Add data".
+Cliquez sur "Choose File", sélectionnez ontology.ttl, et cliquez sur "Upload".
+Charger les Données d'Exemple :
+Répétez le processus pour sample_data.ttl
+
+
+
+
+Naviguer vers le Répertoire Backend :
+cd backend
+Créer un Environnement Virtuel :
+python -m venv env
+Activer l'Environnement Virtuel :
+env\Scripts\activate
+Démarrer le Serveur Flask :
+python app.py
+http://localhost:5000
+
+Dans POSTMAN: 
+http://localhost:5000/query
+{
+    "query": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10"
+}
+http://localhost:5000/update
+{
+    "update": "INSERT DATA { <http://example.org#Laptop2> <http://example.org#hasPrice> \"1200\" . }"
+}

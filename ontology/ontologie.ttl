@@ -1,0 +1,30 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org#> .
+
+# Classes
+ex:Product rdf:type rdfs:Class .
+ex:Electronics rdf:type rdfs:Class ;
+               rdfs:subClassOf ex:Product .
+ex:Clothing rdf:type rdfs:Class ;
+            rdfs:subClassOf ex:Product .
+ex:AutoParts rdf:type rdfs:Class ;
+             rdfs:subClassOf ex:Product .
+
+# Propriétés de données
+ex:hasBrand rdf:type rdf:Property ;
+            rdfs:domain ex:Product ;
+            rdfs:range rdfs:Literal .
+
+ex:hasPrice rdf:type rdf:Property ;
+            rdfs:domain ex:Product ;
+            rdfs:range rdfs:Literal .
+
+ex:hasSpecification rdf:type rdf:Property ;
+                   rdfs:domain ex:Product ;
+                   rdfs:range rdfs:Literal .
+
+# Propriétés d'objet
+ex:hasCategory rdf:type rdf:Property ;
+              rdfs:domain ex:Product ;
+              rdfs:range ex:Category .
