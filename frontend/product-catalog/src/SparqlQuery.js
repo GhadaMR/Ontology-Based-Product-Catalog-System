@@ -1,11 +1,67 @@
 // src/SparqlQuery.js
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
 const SparqlQuery = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [error, setError] = useState(null);
+
+  const styles = {
+    container: {
+      padding: "20px",
+      fontFamily: "'Roboto', sans-serif",
+      maxWidth: "800px",
+      margin: "0 auto",
+      backgroundColor: "#f9f9f9",
+      borderRadius: "8px",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    },
+    title: {
+      textAlign: "center",
+      color: "#333",
+      marginBottom: "20px",
+    },
+    textarea: {
+      width: "100%",
+      height: "150px",
+      border: "1px solid #ccc",
+      borderRadius: "4px",
+      padding: "10px",
+      fontSize: "16px",
+    },
+    button: {
+      marginTop: "10px",
+      padding: "10px 20px",
+      fontSize: "16px",
+      color: "#fff",
+      backgroundColor: "#007bff",
+      border: "none",
+      borderRadius: "4px",
+      cursor: "pointer",
+    },
+    error: {
+      color: "#e74c3c",
+      marginTop: "10px",
+      fontWeight: "bold",
+    },
+    results: {
+      marginTop: "20px",
+    },
+    table: {
+      borderCollapse: "collapse",
+      width: "100%",
+    },
+    th: {
+      backgroundColor: "#f4f4f4",
+      padding: "10px",
+      textAlign: "left",
+    },
+    td: {
+      padding: "10px",
+      borderBottom: "1px solid #ddd",
+    },
+  };
 
   const executeQuery = async () => {
     setError(null);
@@ -24,31 +80,31 @@ const SparqlQuery = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Exécuter une Requête SPARQL</h2>
+    <div style={styles.container}>
+      <h2 style={styles.title}>Exécuter une Requête SPARQL</h2>
       <textarea
-        style={{ width: "100%", height: "150px" }}
+        style={styles.textarea}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Écrivez votre requête SPARQL ici"
       />
       <br />
-      <button onClick={executeQuery} style={{ marginTop: "10px" }}>
+      <button onClick={executeQuery} style={styles.button}>
         Exécuter la Requête
       </button>
       {error && (
-        <div style={{ color: "red", marginTop: "10px" }}>
+        <div style={styles.error}>
           <strong>Erreur:</strong> {error}
         </div>
       )}
       {results.length > 0 && (
-        <div style={{ marginTop: "20px" }}>
+        <div style={styles.results}>
           <h3>Résultats :</h3>
-          <table border="1" cellPadding="5" style={{ borderCollapse: "collapse", width: "100%" }}>
+          <table border="1" cellPadding="5" style={styles.table}>
             <thead>
               <tr>
                 {Object.keys(results[0]).map((key) => (
-                  <th key={key}>{key}</th>
+                  <th key={key} style={styles.th}>{key}</th>
                 ))}
               </tr>
             </thead>
@@ -56,7 +112,7 @@ const SparqlQuery = () => {
               {results.map((result, idx) => (
                 <tr key={idx}>
                   {Object.values(result).map((val, i) => (
-                    <td key={i}>{val.value}</td>
+                    <td key={i} style={styles.td}>{val.value}</td>
                   ))}
                 </tr>
               ))}
