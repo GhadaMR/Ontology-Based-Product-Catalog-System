@@ -81,25 +81,25 @@ const SparqlQuery = () => {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>Exécuter une Requête SPARQL</h2>
+      <h2 style={styles.title}>Execute a SPARQL Query</h2>
       <textarea
         style={styles.textarea}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Écrivez votre requête SPARQL ici"
+        placeholder="write yoour SPARQL query here... "
       />
       <br />
       <button onClick={executeQuery} style={styles.button}>
-        Exécuter la Requête
+      Execute Query
       </button>
       {error && (
         <div style={styles.error}>
-          <strong>Erreur:</strong> {error}
+          <strong>Error:</strong> {error}
         </div>
       )}
       {results.length > 0 && (
         <div style={styles.results}>
-          <h3>Résultats :</h3>
+          <h3>Results :</h3>
           <table border="1" cellPadding="5" style={styles.table}>
             <thead>
               <tr>

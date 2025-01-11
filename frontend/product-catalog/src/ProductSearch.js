@@ -108,9 +108,9 @@ const ProductSearch = () => {
 
     return (
         <div style={styles.container}>
-            <h2 style={styles.title}>Rechercher des Produits</h2>
+            <h2 style={styles.title}>Search for Products</h2>
             <div style={styles.formGroup}>
-                <label style={styles.label}>Type de Produit:</label>
+                <label style={styles.label}>Product Type:</label>
                 <input
                     type="text"
                     value={type}
@@ -120,7 +120,7 @@ const ProductSearch = () => {
                 />
             </div>
             <div style={{ marginBottom: "10px" }}>
-                <label style={styles.label}>Marque:</label>
+                <label style={styles.label}>Brand:</label>
                 <input
                     type="text"
                     value={brand}
@@ -130,14 +130,14 @@ const ProductSearch = () => {
                 />
             </div>
             <div style={{ marginBottom: "10px" }}>
-                <label style={styles.label}>Prix Min:</label>
+                <label style={styles.label}>Min Price:</label>
                 <input
                     type="number"
                     value={minPrice}
                     onChange={(e) => setMinPrice(e.target.value)}
                     style={styles.input}
                 />
-                <label style={styles.label}>Prix Max:</label>
+                <label style={styles.label}>Max Price:</label>
                 <input
                     type="number"
                     value={maxPrice}
@@ -146,23 +146,23 @@ const ProductSearch = () => {
                 />
             </div>
             <button onClick={executeQuery} style={styles.button}>
-                Rechercher
+            Search
             </button>
             {error && (
                 <div style={{ color: "red", marginTop: "10px" }}>
-                    <strong>Erreur:</strong> {error}
+                    <strong>Error:</strong> {error}
                 </div>
             )}
             {results.length > 0 && (
                 <div style={{ marginTop: "20px" }}>
-                    <h3 style={styles.results}>Résultats :</h3>
+                    <h3 style={styles.results}>Results :</h3>
                     <table border="1" cellPadding="5" style={styles.table}>
                         <thead>
                             <tr>
-                                <th style={styles.th}> Produit</th>
-                                <th style={styles.th}>Marque</th>
-                                <th style={styles.th}>Prix</th>
-                                <th style={styles.th}>Spécifications</th>
+                                <th style={styles.th}> Product</th>
+                                <th style={styles.th}>Brand</th>
+                                <th style={styles.th}>Price</th>
+                                <th style={styles.th}>Specifications</th>
                             </tr>
                         </thead>
                         <tbody>
