@@ -55,6 +55,53 @@ def update():
     except Exception as e:
         return jsonify({"error": f"Failed to execute update: {str(e)}"}), 500
 
+@app.route("/search", methods=["POST"])
+def search_products():
+    """
+    Recherche et filtre des produits selon les critères envoyés par le frontend.
+    """
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Request body is empty"}), 400
+
+    name = data.get("name", "").strip()
+    category = data.get("category", "").strip()
+    min_price = data.get("min_price")
+    max_price = data.get("max_price")
+
+    filters = []
+    if name:
+        filters.append(f"?productName = '{name}'")
+    if category:
+        filters.append(f"?category = '{category}'")
+    if min_price:
+        filters.append(f"?price >= {min_price}")
+    if max_price:
+        filters.append(f"?price <= {max_price}")
+
+    filter_clause = " && ".join(filters) if filters else "true"
+
+    sparql_query = f"""
+    SELECT ?productName ?category ?price
+    WHERE {{
+        ?product a :Product .
+        ?product :name ?productName .
+        ?product :category ?category .
+        ?product :price ?price .
+        FILTER ({filter_clause})
+    }}
+    """
+
+    sparql = SPARQLWrapper(SPARQL_ENDPOINT)
+    sparql.setQuery(sparql_query)
+    sparql.setReturnFormat(JSON)
+
+    try:
+        results = sparql.query().convert()
+        return jsonify(results)
+    except Exception as e:
+        return jsonify({"error": f"Failed to execute search: {str(e)}"}), 500
+
 @app.route("/favicon.ico")
 def favicon():
     """
